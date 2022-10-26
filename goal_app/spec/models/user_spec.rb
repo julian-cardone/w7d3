@@ -1,5 +1,18 @@
 require 'rails_helper'
 
-it {should validate_presence_of(:username)}
-it {should validate_presence_of(:password_digest)}
-it {should validate_length_of(:password).is_at_least(6)} 
+
+
+RSpec.describe User, type: :model do
+    let(:incomplete_user) {
+      User.new(
+        username: "",
+        email: "email@aa.io",
+        password: "password"
+      )
+    }
+
+    it {should validate_presence_of(:username)}
+    it {should validate_presence_of(:password_digest)}
+    it {should validate_length_of(:password).is_at_least(6)} 
+
+end
